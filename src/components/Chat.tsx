@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "./ui/scroll-area";
+import { getRandomInt } from "@/lib/random";
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
@@ -33,7 +34,7 @@ export default function Chat() {
               {message.role === "user" && (
                 <Avatar>
                   <AvatarFallback>EM</AvatarFallback>
-                  <AvatarImage src="https://github.com/emeps.png" />
+                  <AvatarImage src={"http://lorempixel.com.br/500/400/?"+getRandomInt(99)} />
                 </Avatar>
               )}
               {message.role === "assistant" && (
