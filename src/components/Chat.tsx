@@ -12,6 +12,7 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "./ui/scroll-area";
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
@@ -19,12 +20,13 @@ export default function Chat() {
   console.log(messages);
 
   return (
-    <Card className="w-[400px] h-[700px] grid grid-rows-[min-content_1fr_min-content]">
+    <Card className="w-[700px]">
       <CardHeader>
         <CardTitle>Chat IA</CardTitle>
         <CardDescription>Chat bot using Vercel SDK</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-3">
+      <CardContent >
+        <ScrollArea className="h-[640px] w-full space-y-3">
         {messages.map((message) => {
           return (
             <div key={message.id} className="flex gap-4 text-slate-600 text-sm">
@@ -40,7 +42,7 @@ export default function Chat() {
                   <AvatarImage src="https://github.com/adaptiOficial.png" />
                 </Avatar>
               )}
-              <p className="leading-relaxed">
+              <p className="leading-relaxed mr-2">
                 <span className="block font-bold text-slate-600">
                   {message.role === "user" ? "You" : "AI"}
                 </span>
@@ -49,9 +51,10 @@ export default function Chat() {
             </div>
           );
         })}
+        </ScrollArea>
       </CardContent>
       <CardFooter>
-        <form className="flex gap-4" onSubmit={handleSubmit}>
+        <form className="flex gap-4 w-full" onSubmit={handleSubmit}>
           <Input
             placeholder="How can I help you?"
             value={input}
